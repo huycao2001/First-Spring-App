@@ -3,10 +3,10 @@
 		<title> Welcome page</title>
 	</head>
 	<body>
-		<div> Welcome to the welcome page ! </div>
-		<div> Your name is ${name} </div>
-		<div> Your password is ${password} </div>
-		<div> <a href="list-todos">Manage your todos</a> </div>
+		<div class="container">
+			<h1>Welcome ${name}</h1>
+			<a href="list-todos">Manage</a> your todos
+		</div>
 		
 		
 		
