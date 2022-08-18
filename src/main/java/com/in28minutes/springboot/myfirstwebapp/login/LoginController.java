@@ -7,11 +7,13 @@ import org.springframework.ui.context.Theme;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ch.qos.logback.classic.Logger;
 
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 	
 	//private org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
