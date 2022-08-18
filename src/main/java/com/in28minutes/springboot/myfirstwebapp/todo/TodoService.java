@@ -1,11 +1,16 @@
 package com.in28minutes.springboot.myfirstwebapp.todo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class TodoService {
 	
-	private static List<Todo> todos; 
+	private static List<Todo> todos = new ArrayList<>(); 
 	
 	static {
 		todos.add(new Todo(1, "in28minutes","Learn AWS", 
@@ -16,7 +21,7 @@ public class TodoService {
 				LocalDate.now().plusYears(3), false ));
 	}
 
-	public List<Todo> findByUsername(){
-		return todos; 
+	public List<Todo> findByUsername(String username){
+		return todos;
 	}
 }
