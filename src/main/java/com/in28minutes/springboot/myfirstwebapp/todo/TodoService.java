@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.tools.Tool;
+
 import org.springframework.stereotype.Service;
 
 
@@ -30,5 +32,12 @@ public class TodoService {
 	void addTodo(String username, String description, LocalDate targetDate, boolean done) {
 		Todo todo = new Todo(++todosCount, username, description, targetDate, done);
 		todos.add(todo);
+	}
+	
+	
+	void deleteById(int id) {
+		//numbers.removeIf(e -> (e % 2) == 0);;
+		todos.removeIf(todos -> (todos.getId() == id)); 
+		
 	}
 }
