@@ -8,6 +8,8 @@ import javax.tools.Tool;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
+
 
 @Service
 public class TodoService {
@@ -17,7 +19,7 @@ public class TodoService {
 	private static int todosCount = 0; 
 	
 	static {
-		todos.add(new Todo(++todosCount, "in28minutes","Learn AWS", 
+		todos.add(new Todo(++todosCount, "in28minutes","Get to achieve AWS", 
 							LocalDate.now().plusYears(1), false ));
 		todos.add(new Todo(++todosCount, "in28minutes","Learn DevOps", 
 				LocalDate.now().plusYears(2), false ));
@@ -38,6 +40,19 @@ public class TodoService {
 	void deleteById(int id) {
 		//numbers.removeIf(e -> (e % 2) == 0);;
 		todos.removeIf(todos -> (todos.getId() == id)); 
+		
+	}
+
+	Todo findById(int id) {
+		for(Todo todo : todos) {
+			if(todo.getId() == id) return todo; 
+		}
+		return null;
+	}
+
+	public void updateTodo(@Valid Todo todo) {
+		deleteById(todo.getId());
+		todos.add(todo);
 		
 	}
 }
