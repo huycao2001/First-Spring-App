@@ -1,6 +1,9 @@
 package com.in28minutes.springboot.myfirstwebapp.login;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.event.AuthenticationCredentialsNotFoundEvent;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.ui.context.Theme;
@@ -24,24 +27,13 @@ public class WelcomeController {
 	//Model
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String gotoWelcomePage(ModelMap model) {
-		model.put("name", "in28minutes");
+		model.put("name", getLoggedinUsername());
 		return "welcome";
 	}
 	
 	
-//	@RequestMapping(value="login", method = RequestMethod.POST)
-//	// The function below acts like the action in php. 
-//	// when we post the data, the function will redirect to the welcome page. 
-//	// The params name and password are passed to this function from the post request
-//	public String gotoWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model) {
-//		if(authenticationService.authenticate(name, password)) {
-//			model.put("name", name);
-//			model.put("password", password); 
-//			return "welcome";
-//		}
-//		
-//		model.put("errorMessage", "Invalid credentials, please try again.");
-//		
-//		return "login";
-//	}
+	private String getLoggedinUsername() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		return authentication.getName();
+	}
 }

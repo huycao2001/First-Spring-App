@@ -28,7 +28,17 @@ public class TodoService {
 	}
 
 	public List<Todo> findByUsername(String username){
-		return todos;
+		List<Todo> result = new ArrayList<>();
+		for(Todo todo : todos) {
+			if(todo.getUsername() == null) {
+				System.out.println("This todo is null : " + todo);
+			}
+			else {
+				result.add(todo); 
+			}
+		}
+		
+		return result;
 	}
 	
 	void addTodo(String username, String description, LocalDate targetDate, boolean done) {
