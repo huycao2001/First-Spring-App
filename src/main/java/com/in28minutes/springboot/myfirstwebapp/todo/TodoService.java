@@ -33,7 +33,8 @@ public class TodoService {
 			if(todo.getUsername() == null) {
 				System.out.println("This todo is null : " + todo);
 			}
-			else {
+			else if(todo.getUsername().equalsIgnoreCase(username)) {
+				
 				result.add(todo); 
 			}
 		}
