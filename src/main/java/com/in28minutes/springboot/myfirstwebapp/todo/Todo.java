@@ -2,9 +2,20 @@ package com.in28minutes.springboot.myfirstwebapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+// Using JPA to map a bean to a database table
+// If we put the annotation Entity -> Spring Boot auto configuration 
+// will automatically create a table in the database
+@Entity
 public class Todo {
+	
+	@Id
+	@GeneratedValue
 	private int id; 
 	private String username;
 	
