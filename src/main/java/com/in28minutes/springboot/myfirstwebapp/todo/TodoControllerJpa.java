@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,21 +18,26 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import ch.qos.logback.classic.Logger;
 import jakarta.validation.Valid;
 
-//@Controller
+@Controller
 @SessionAttributes("name") // If you want to add a variable to a session, you must add to all the controllers.
-public class TodoController {
+public class TodoControllerJpa {
 	private TodoService todoService;
+	
+	private TodoRepository todoRepository; 
 
-	public TodoController(TodoService todoService) {
+	public TodoControllerJpa(TodoService todoService, TodoRepository todoRepository) {
 		super();
 		this.todoService = todoService;
+		this.todoRepository = todoRepository;
+		
 	} 
 	
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
 		String username = getLoggedinUsername(); 
 		System.out.println("From list-todos, username is " + username);
-		List<Todo> todos = todoService.findByUsername(username);
+		//List<Todo> todos = todoService.findByUsername(username);
+		List<Todo> todos = todoRepository.findByUsername(username);
 		model.addAttribute("todos", todos);
 		
 		return "listTodos";

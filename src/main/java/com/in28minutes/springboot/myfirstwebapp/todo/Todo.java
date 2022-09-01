@@ -33,6 +33,10 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.done = done;
 	}
+	
+	public Todo() {
+		
+	}
 
 
 	public int getId() {
